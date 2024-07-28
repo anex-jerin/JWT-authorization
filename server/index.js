@@ -14,6 +14,17 @@ const databaseConnection = async (link) => {
   console.log('Database is connected');
 };
 
+//Global error Handler
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+}); 
+
 // SERVER setup
 const start = async () => {
   try {
