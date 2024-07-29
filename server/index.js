@@ -1,12 +1,21 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+
 
 dotenv.config();
 const app = express();
 
 const port = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
+
+// Middlewares
+app.use(cors);
+app.use(express.json())
+
+// Routes
 
 // Mongo DB connection
 const databaseConnection = async (link) => {
@@ -23,7 +32,7 @@ app.use((err, req, res, next) => {
     status: err.status,
     message: err.message,
   });
-}); 
+});
 
 // SERVER setup
 const start = async () => {
