@@ -22,7 +22,7 @@ exports.signUp = async (req, res, next) => {
       { expiresIn: '90d' }
     );
 
-    res.status.json({
+    res.status(201).json({
       status: 'success',
       message: 'user regitered successfully',
       token,
